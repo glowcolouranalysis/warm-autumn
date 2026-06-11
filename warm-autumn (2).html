@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Warm Autumn Colour Palette</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F0F2F7;
+    --text: #111827;
+    --accent: #8B5000;
+    --silver: #8B7A5A;
+    --muted: #5A4A2A;
+    --card-bg: #E3E6EF;
+    --tap-min: 44px;
+  }
+
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 0 0 80px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 28px 20px 20px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--silver);
+    margin: 14px auto 0;
+  }
+  .header-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #4A5068;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(52px, 16vw, 88px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg, #8B4A00 0%, #C47A2A 35%, #A85A00 65%, #6B3800 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header h1 span { font-style: italic; }
+  .header-sub {
+    margin-top: 10px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: #4A5068;
+  }
+
+  /* TABS */
+  .tabs-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid rgba(17,24,39,0.08);
+    padding: 0;
+  }
+  .tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    gap: 0;
+    padding: 0 12px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #4A5068;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 14px 14px 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-height: var(--tap-min);
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active {
+    color: var(--text);
+    border-bottom-color: var(--text);
+    font-weight: 500;
+  }
+
+  /* SECTIONS */
+  .section {
+    display: none;
+    padding: 20px 16px 0;
+    max-width: 960px;
+    margin: 0 auto;
+    animation: fadeUp 0.3s ease both;
+  }
+  .section.visible { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 26px;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .section-desc {
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    color: #4A5068;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  /* GRIDS */
+  .all-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  @media (min-width: 480px) {
+    .all-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (min-width: 700px) {
+    .all-grid { grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  }
+
+  .all-grid .swatch-card {
+    cursor: pointer;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--card-bg);
+    box-shadow: 0 1px 4px rgba(17,24,39,0.08);
+    transition: transform 0.15s, box-shadow 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .all-grid .swatch-card:active { transform: scale(0.97); }
+  .all-grid .swatch-card .swatch-colour {
+    aspect-ratio: 1;
+    width: 100%;
+  }
+  .all-grid .swatch-card .swatch-base { padding: 6px 7px 8px; }
+  .all-grid .swatch-card .swatch-name {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .all-grid .swatch-card .swatch-hex {
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* DNA BANNER */
+  .dna-banner {
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 6px;
+    padding: 18px 16px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  @media (min-width: 560px) {
+    .dna-banner { grid-template-columns: repeat(3,1fr); gap: 10px; }
+  }
+  .dna-key {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-bottom: 4px;
+  }
+  .dna-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  .dna-desc {
+    font-size: 12px;
+    color: rgba(240,242,247,0.65);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* RULE STRIP */
+  .rule-strip {
+    background: var(--card-bg);
+    border-left: 3px solid var(--silver);
+    padding: 16px 18px;
+    margin-bottom: 20px;
+    border-radius: 0 6px 6px 0;
+  }
+  .rule-strip p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .rule-strip strong { font-weight: 500; color: var(--accent); }
+
+  /* GUIDE NOTE */
+  .guide-note {
+    background: rgba(139,80,0,0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: #111827;
+    font-weight: 400;
+  }
+  .guide-note strong { color: var(--accent); font-weight: 600; }
+
+  /* CONTEXT GRID */
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  @media (min-width: 480px) {
+    .context-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 700px) {
+    .context-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .context-card {
+    background: var(--card-bg);
+    border-radius: 6px;
+    padding: 16px 16px;
+  }
+  .ctx-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .ctx-colours {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .ctx-chip {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgba(17,24,39,0.1);
+  }
+  .ctx-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* MAKEUP SECTIONS */
+  .makeup-section { margin-bottom: 32px; }
+  .makeup-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    color: var(--text);
+    margin-bottom: 4px;
+    margin-top: 28px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(17,24,39,0.1);
+  }
+  .makeup-section-title:first-of-type { margin-top: 0; }
+  .makeup-intro {
+    font-size: 14px;
+    color: #111827;
+    letter-spacing: 0.02em;
+    margin-bottom: 14px;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+  .makeup-card {
+    background: var(--card-bg);
+    border-radius: 6px;
+    padding: 16px 16px;
+    margin-bottom: 10px;
+  }
+  .makeup-card-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .makeup-card-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #111827;
+    font-weight: 400;
+  }
+  .makeup-card-text strong { font-weight: 600; }
+  .makeup-card-text em { font-style: italic; color: #4A5068; font-size: 13px; }
+
+  .makeup-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0 10px;
+  }
+  .makeup-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(17,24,39,0.08);
+    border-radius: 20px;
+    padding: 5px 11px 5px 7px;
+    font-size: 12px;
+    color: var(--text);
+    letter-spacing: 0.03em;
+  }
+  .makeup-chip-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid rgba(17,24,39,0.1);
+  }
+
+  .makeup-tip {
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 6px;
+    padding: 18px 20px;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+  .makeup-tip strong { font-weight: 600; color: #C8A070; }
+  .makeup-tip em { font-style: italic; opacity: 0.8; }
+
+  /* FULLSCREEN OVERLAY */
+  .fs-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .fs-overlay.active { display: flex; flex-direction: column; }
+  .fs-overlay { background: #111; }
+  .fs-colour-block {
+    position: absolute;
+    top: 2px; left: 2px; right: 2px; bottom: 2px;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 32px rgba(17,24,39,0.18);
+  }
+  .fs-tap-zone {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1;
+    cursor: pointer;
+  }
+  .fs-peek {
+    position: absolute;
+    bottom: 2px; left: 2px; right: 2px;
+    z-index: 2;
+    padding: 10px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border-radius: 0 0 12px 12px;
+    background: transparent;
+  }
+  .fs-peek-pill {
+    width: 36px; height: 5px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.4);
+    margin-bottom: 2px;
+    cursor: pointer;
+  }
+  .fs-peek-pill.dark { background: rgba(17,24,39,0.2); }
+  .fs-peek-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .fs-peek-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: #fff;
+    display: block;
+    line-height: 1.15;
+  }
+  .fs-peek-name.dark { color: #111827; }
+  .fs-peek-hex {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    display: block;
+  }
+  .fs-peek-hex.dark { color: rgba(17,24,39,0.5); }
+  .fs-peek-btns { display: flex; gap: 10px; flex-shrink: 0; }
+  .fs-copy-btn {
+    height: var(--tap-min);
+    padding: 0 18px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .fs-copy-btn.dark {
+    border-color: rgba(17,24,39,0.3);
+    background: rgba(17,24,39,0.12);
+    color: #111827;
+  }
+  .fs-close-btn {
+    width: var(--tap-min);
+    height: var(--tap-min);
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .fs-close-btn.dark {
+    border-color: rgba(17,24,39,0.3);
+    background: rgba(17,24,39,0.12);
+    color: #111827;
+  }
+
+  /* DRAWER */
+  .fs-drawer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 3;
+    border-radius: 18px 18px 0 0;
+    padding: 10px 18px 28px;
+    transform: translateY(100%);
+    transition: transform 0.32s cubic-bezier(0.32,0.72,0,1);
+    box-shadow: 0 -6px 40px rgba(17,24,39,0.22);
+    background: rgba(255,255,255,0.98);
+    color: #111827;
+  }
+  .fs-drawer.open { transform: translateY(0); }
+  .fs-drawer-pill {
+    width: 36px; height: 5px;
+    border-radius: 3px;
+    background: rgba(17,24,39,0.15);
+    margin: 0 auto 10px;
+    cursor: pointer;
+  }
+  .fs-drawer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 2px;
+    color: #111827;
+  }
+  .fs-drawer-hex {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    margin-bottom: 12px;
+    color: #111827;
+  }
+  .fs-rows {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .fs-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  .fs-value {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #111827;
+  }
+  .fs-actions { display: flex; gap: 10px; }
+  .fs-copy-btn2 {
+    flex: 1;
+    height: var(--tap-min);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--text);
+    color: var(--bg);
+  }
+  .fs-close-btn2 {
+    height: var(--tap-min);
+    padding: 0 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid rgba(17,24,39,0.2);
+    color: var(--text);
+  }
+
+  /* FOOTER */
+  .glow-footer {
+    text-align: center;
+    padding: 56px 24px 40px;
+  }
+  .glow-circle {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 14px;
+    box-shadow: 0 4px 24px rgba(17,24,39,0.13);
+  }
+  .glow-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .glow-logo-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #4A5068;
+  }
+  .glow-copyright {
+    margin-top: 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    line-height: 1.7;
+    color: #7A8099;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">Glow Colour Analysis</div>
+  <h1>Warm <span>Autumn</span></h1>
+  <p class="header-sub">Tap any swatch to explore · Tap again to close</p>
+</div>
+
+<div class="tabs-wrapper">
+  <div class="tabs" id="tabs-bar">
+    <button class="tab active" onclick="showSection('overview', this)">Overview</button>
+    <button class="tab" onclick="showSection('neutrals', this)">Neutrals</button>
+    <button class="tab" onclick="showSection('blenders', this)">Light Neutrals</button>
+    <button class="tab" onclick="showSection('basics', this)">Basics</button>
+    <button class="tab" onclick="showSection('accents', this)">Accents</button>
+    <button class="tab" onclick="showSection('power', this)">Power Colours</button>
+    <button class="tab" onclick="showSection('when', this)">When to Wear</button>
+    <button class="tab" onclick="showSection('accessories', this)">Accessories & Eyewear</button>
+    <button class="tab" onclick="showSection('makeup', this)">Makeup & Hair</button>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section visible" id="section-overview">
+  <div class="dna-banner">
+    <div class="dna-item">
+      <div class="dna-key">Undertone</div>
+      <div class="dna-val">Warm</div>
+      <div class="dna-desc">Distinctly warm. Golden undertone throughout</div>
+    </div>
+    <div class="dna-item">
+      <div class="dna-key">Value</div>
+      <div class="dna-val">Light to Medium</div>
+      <div class="dna-desc">You shine in light to medium tones. Your sweet spot is the warm golden mid-range</div>
+    </div>
+    <div class="dna-item">
+      <div class="dna-key">Intensity</div>
+      <div class="dna-val">Medium to High</div>
+      <div class="dna-desc">Your colours can have vibrancy and life. Warm, golden, and naturally radiant</div>
+    </div>
+  </div>
+
+  <div class="rule-strip">
+    <p><strong>Warm Autumn is distinctly warm and golden.</strong> Your colours are lively, approachable, and naturally radiant. If it looks too muted, greyed out, cool, or too dark and heavy, it has gone too far toward Autumn territory. If it looks warm, golden, and naturally alive, you are in the right place.</p>
+  </div>
+
+  <div class="guide-note">
+    <strong>This is inspiration, not rules.</strong> Every colour in your palette works with you and with each other. Use this guide as a reference and a starting point as you learn your colours. Colour analysis is about empowerment, not restriction. Take what feels right, when it feels right, and leave what doesn't.
+    <br><br>
+    The Warm Autumn palette contains thousands of colours. The swatches here are carefully chosen examples to help you understand the qualities to look for, warm, golden, and naturally radiant. When you shop, use these as a visual compass. Warm Autumn flows toward Spring, which means your colours can have a liveliness that True Autumn does not need. Keep them warm and golden. If a colour starts to feel cool, pastel, or overly bright and clear, it has gone too far.
+    <br><br>
+    <strong>Your essence:</strong> Spectacular. Lively. Distinctive. Natural. Approachable. Friendly. These words describe the energy your palette carries. This guide gives you permission to lean into your warmth fully and wear it with joy.
+    <br><br>
+    <strong>A note on blues:</strong> Blue is the most challenging colour family for Warm Autumn. All the blues in this palette sit on the warmer, teal-leaning side of the hue scale rather than a pure cool blue. Even so, they can be difficult to render accurately on screen. In real life, look for blues that feel warm or golden. Blues work beautifully in patterns, as a trouser or jacket, or mixed with your warmer tones. When in doubt, lean toward the teals and aquas which are more confidently yours.
+    <br><br>
+    <strong>Screen tip:</strong> For the most accurate colour reference, turn off your blue light filter and set your screen brightness to around 80 percent or higher. On iPhone, look for <strong>Night Shift</strong> under Settings &gt; Display &amp; Brightness. On Samsung, look for <strong>Eye Comfort Shield</strong> under Settings &gt; Display.
+  </div>
+
+  <div class="section-title">Your Full Palette</div>
+  <div class="section-desc">Tap any swatch for a full-screen colour reference · Browse by category in the tabs above</div>
+
+  <div class="guide-note">
+    <strong>How to use this palette as a range guide:</strong> Your palette spans from warm ivory and golden cream and warm sand tones all the way through to dark chestnut, dark chestnut, and rich warm garnet, and all of it works for you. Use the lightest swatches as your guide to how light you can go while keeping that warm, golden quality. Use the darkest swatches as your guide to how rich and dark you can go. Everything in between is your sweet spot. When you are shopping and unsure about a shade, find the closest colour in your palette and use it as your reference point.
+  </div>
+
+  <div class="all-grid" id="grid-overview"></div>
+</div>
+
+<!-- FULLSCREEN OVERLAY -->
+<div class="fs-overlay" id="fs-overlay">
+  <div class="fs-colour-block" id="fs-colour-block"></div>
+  <div class="fs-tap-zone" onclick="fsToggleDrawer()"></div>
+  <div class="fs-peek" id="fs-peek">
+    <div class="fs-peek-pill" id="fs-peek-pill" onclick="fsToggleDrawer()"></div>
+    <div class="fs-peek-row">
+      <div>
+        <span class="fs-peek-name" id="fs-name"></span>
+        <span class="fs-peek-hex" id="fs-hex"></span>
+      </div>
+      <div class="fs-peek-btns">
+        <button class="fs-copy-btn" id="fs-copy-btn" onclick="event.stopPropagation(); fsCopy()">Copy</button>
+        <button class="fs-close-btn" id="fs-close-btn" onclick="event.stopPropagation(); fsClose()">✕</button>
+      </div>
+    </div>
+  </div>
+  <div class="fs-drawer" id="fs-drawer">
+    <div class="fs-drawer-pill" onclick="fsToggleDrawer()"></div>
+    <div class="fs-drawer-name" id="fs-drawer-name"></div>
+    <div class="fs-drawer-hex" id="fs-drawer-hex"></div>
+    <div class="fs-rows">
+      <div>
+        <div class="fs-label">When to Wear</div>
+        <div class="fs-value" id="fs-when"></div>
+      </div>
+      <div>
+        <div class="fs-label">Pair With</div>
+        <div class="fs-value" id="fs-pair"></div>
+      </div>
+    </div>
+    <div class="fs-actions">
+      <button class="fs-copy-btn2" id="fs-copy-btn2" onclick="fsCopy2()">Copy hex</button>
+      <button class="fs-close-btn2" onclick="fsClose()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- NEUTRALS -->
+<div class="section" id="section-neutrals">
+  <div class="section-title">Neutrals</div>
+  <div class="section-desc">Your warm brown foundation colours, from golden tan to dark chestnut. The colours that anchor everything else. Tap any swatch for a full-screen view.</div>
+  <div class="all-grid" id="grid-neutrals"></div>
+</div>
+
+<!-- LIGHT NEUTRALS -->
+<div class="section" id="section-blenders">
+  <div class="section-title">Light Neutrals</div>
+  <div class="section-desc">Your warm ivories, golden creams, peaches, and caramels. The lighter versions that glow and add warmth to your combinations. Tap any swatch for a full-screen view.</div>
+  <div class="all-grid" id="grid-blenders"></div>
+</div>
+
+<!-- BASICS -->
+<div class="section" id="section-basics">
+  <div class="section-title">Basics</div>
+  <div class="section-desc">Your warm greens, golden teals, warm blues and purples. Everything starts from warmth and yellow, never cool or muted. Tap any swatch for a full-screen view.</div>
+  <div class="all-grid" id="grid-basics"></div>
+</div>
+
+<!-- ACCENTS -->
+<div class="section" id="section-accents">
+  <div class="section-title">Accents</div>
+  <div class="section-desc">Your brick reds, terracottas, vivid oranges, golden yellows, and warm pinks. The lively, spectacular colours that are completely and distinctly yours. Tap any swatch for a full-screen view.</div>
+  <div class="all-grid" id="grid-accents"></div>
+</div>
+
+<!-- POWER COLOURS -->
+<div class="section" id="section-power">
+  <div class="section-title">Power Colours</div>
+  <div class="section-desc">A curated edit across your entire palette — the most commanding and psychologically vibrant colours for presence, warmth, and natural confidence. Reach for these when you want to feel spectacular and completely yourself. Tap any swatch for a full-screen view.</div>
+  <div class="all-grid" id="grid-power"></div>
+</div>
+
+<!-- WHEN TO WEAR -->
+<div class="section" id="section-when">
+  <div class="section-title">When & Where to Wear Your Colours</div>
+  <div class="section-desc">Match the occasion to your best shades — every colour in your palette works across clothing, accessories, makeup, nails and beyond</div>
+  <div class="context-grid">
+    <div class="context-card">
+      <div class="ctx-label">Interviews</div>
+      <div class="ctx-colours">
+        <div class="ctx-chip" style="background:#3A6A3A"></div>
+        <div class="ctx-chip" style="background:#2A7A6A"></div>
+        <div class="ctx-chip" style="background:#9A6A50"></div>
+      </div>
+      <div class="ctx-desc">Forest Green, Golden Teal, Medium Warm Brown, trustworthy, natural, warmly confident</div>
+    </div>
+    <div class="context-card">
+      <div class="ctx-label">Work / Business</div>
+      <div class="ctx-colours">
+        <div class="ctx-chip" style="background:#9A6A50"></div>
+        <div class="ctx-chip" style="background:#7A4A28"></div>
+        <div class="ctx-chip" style="background:#6A7A3A"></div>
+      </div>
+      <div class="ctx-desc">Medium Warm Brown, Warm Brown, Moss Green, grounded, approachable, naturally professional</div>
+    </div>
+    <div class="context-card">
+      <div class="ctx-label">Dates & Social</div>
+      <div class="ctx-colours">
+        <div class="ctx-chip" style="background:#C45535"></div>
+        <div class="ctx-chip" style="background:#B84030"></div>
+        <div class="ctx-chip" style="background:#D87868"></div>
+      </div>
+      <div class="ctx-desc">Vivid Terracotta, Rust, Terracotta Pink, warm, magnetic, naturally inviting</div>
+    </div>
+    <div class="context-card">
+      <div class="ctx-label">Branding / Online</div>
+      <div class="ctx-colours">
+        <div class="ctx-chip" style="background:#E8C83A"></div>
+        <div class="ctx-chip" style="background:#C8A055"></div>
+        <div class="ctx-chip" style="background:#C07030"></div>
+      </div>
+      <div class="ctx-desc">Golden Yellow, Camel, Copper, warm, distinctive, lively and memorable</div>
+    </div>
+    <div class="context-card">
+      <div class="ctx-label">Casual / Everyday</div>
+      <div class="ctx-colours">
+        <div class="ctx-chip" style="background:#D4AA70"></div>
+        <div class="ctx-chip" style="background:#9A6B30"></div>
+        <div class="ctx-chip" style="background:#6A9A3A"></div>
+      </div>
+      <div class="ctx-desc">Golden Beige, Golden Brown, Apple Green, effortless, warm, naturally put together</div>
+    </div>
+    <div class="context-card">
+      <div class="ctx-label">Special Occasions</div>
+      <div class="ctx-colours">
+        <div class="ctx-chip" style="background:#8A2818"></div>
+        <div class="ctx-chip" style="background:#7A2010"></div>
+        <div class="ctx-chip" style="background:#3E1E3A"></div>
+      </div>
+      <div class="ctx-desc">Deep Garnet, Warm Burgundy, Aubergine, warm, luminous, and naturally spectacular</div>
+    </div>
+  </div>
+  <div class="makeup-tip" style="margin-top:24px;">
+    <strong>Shopping for clothes online?</strong> When you find something but are not sure about the colour, try asking an AI assistant with the brand name, product name, and colour name included. For example: <em>"Is the [Brand] [Product Name] in [Colour Name] warm or cool toned? Would it suit a Warm Autumn?"</em> Then do a visual check by comparing the item photo against your palette. Your palette is always your most reliable reference.
+  </div>
+</div>
+
+<!-- ACCESSORIES & EYEWEAR -->
+<div class="section" id="section-accessories">
+  <div class="section-title">Accessories & Eyewear</div>
+  <div class="section-desc">Your palette is your guide for every accessory — jewellery, bags, shoes, scarves, eyewear, ties, hats, nail polish and more.</div>
+
+  <div class="makeup-tip">
+    <strong>The bigger picture:</strong> Every colour in your palette can be referenced for accessories. A warm rust bag, a chestnut belt, a terracotta nail, it all works. The guidance below helps you understand <em>why</em> certain choices feel more harmonious, so you can shop with confidence rather than follow a checklist.
+  </div>
+
+  <div class="makeup-section-title">Jewellery & Metals</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Your best metals</div>
+    <div class="makeup-chips">
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#CFB53B"></div>Gold</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#CD7F32"></div>Bronze</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#C8A84B"></div>Brass</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#B87333"></div>Copper</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#C4956A"></div>Rose Gold</div>
+    </div>
+    <div class="makeup-card-text">Gold, bronze, brass, and copper are your naturals, they mirror the golden warmth of your colouring beautifully. Yellow gold and golden amber are your strongest metal choices. Bright cool silver works against your warmth. <em>Tip: warm golden metals in matte or slightly burnished finishes look particularly harmonious on Warm Autumn.</em></div>
+  </div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Gemstones & statement jewellery</div>
+    <div class="makeup-chips">
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#722F37"></div>Garnet</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#013D2A"></div>Warm Emerald</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#8B4A00"></div>Amber</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#C85A38"></div>Carnelian</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#2A7A6A"></div>Warm Turquoise</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#9A6B30"></div>Tiger's Eye</div>
+    </div>
+    <div class="makeup-card-text">Warm gemstones are your calling — garnet, amber, carnelian, tiger's eye, and warm turquoise are all beautifully flattering. Warm cream pearls and golden amber stones work particularly well. <em>Avoid: icy diamonds in cool silver settings, blue sapphire, or any pale cool gemstone.</em></div>
+  </div>
+
+  <div class="makeup-section-title">Eyewear</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Frame colours that work beautifully</div>
+    <div class="makeup-chips">
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#8B6914"></div>Tortoiseshell</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#8B4513"></div>Chestnut</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#6A7A3A"></div>Moss Green</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#7A3D0E"></div>Dark Chestnut</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#8A2818"></div>Deep Garnet</div>
+    </div>
+    <div class="makeup-card-text">Tortoiseshell and dark warm brown are your standout frame choices, they echo your natural depth and look effortlessly harmonious. dark chestnut, olive, and deep warm garnet are equally strong. <em>Avoid: bright silver, clear frames, icy chrome, or any cool grey tone.</em></div>
+  </div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Lens tints for sunglasses</div>
+    <div class="makeup-card-text">Warm amber, golden brown, or bronze lenses are your most harmonious options. Warm olive-green tinted lenses also work beautifully. <em>Avoid cool grey, blue-grey, or mirrored silver lenses</em>, they introduce a coolness that works against your colouring. A warm copper or dark amber mirror lens is a great statement choice for Warm Autumn.</div>
+  </div>
+
+  <div class="makeup-section-title">Bags & Shoes</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Your most versatile base choices</div>
+    <div class="makeup-chips">
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#7A3A28"></div>Warm Mahogany</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#8B4513"></div>Chestnut</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#8A2818"></div>Deep Garnet</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#B07030"></div>Cognac</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#C8A055"></div>Camel</div>
+    </div>
+    <div class="makeup-card-text">dark chestnut and dark chestnut are your most powerful and versatile bag and shoe bases. warm garnet is a stunning statement. Cognac and camel work beautifully as mid and lighter neutrals. Look for leathers with warm undertones, nothing cool, grey, or ashy. <em>Avoid: cool black, grey, or any icy tone.</em></div>
+  </div>
+
+  <div class="makeup-section-title">Scarves, Hats & Wraps</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Near-face accessories matter most</div>
+    <div class="makeup-card-text">Anything worn close to your face, scarves, hat brims, collars, has the same impact as a top or blouse. Use your Near The Face colours as a guide here. A warm teal scarf, a golden amber hat, or a forest green wrap near your face will all be beautifully flattering. <em>Tip: a rich, warm-toned scarf near the face can transform an otherwise neutral outfit into something that truly works for your season.</em></div>
+  </div>
+
+  <div class="makeup-section-title">Nail Polish</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Your best nail colour directions</div>
+    <div class="makeup-chips">
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#8A2818"></div>Deep Garnet</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#C03000"></div>Chili Red</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#7A2010"></div>Warm Burgundy</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#3E1E3A"></div>Aubergine</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#C07030"></div>Copper</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#C8A030"></div>Golden Mustard</div>
+    </div>
+    <div class="makeup-card-text">Your palette is your nail guide, deep reds, warm garnets, warm garnets, and burnished bronzes are all stunning. For a "clean" nail, a warm nude or deep beige works best. Matte and metallic finishes in warm copper or golden bronze look naturally radiant on Warm Autumn. <em>Avoid: cool berry, icy pink, fuchsia, or blue-based reds.</em></div>
+  </div>
+
+  <div class="makeup-section-title">For the Men</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Ties, pocket squares & accessories</div>
+    <div class="makeup-card-text">The same palette applies. Your Warm Autumn colours translate directly into ties, pocket squares, cufflinks, and accessories. A forest green or terracotta tie is a natural power choice. Medium warm brown, golden brown, and warm navy suits are your strongest base. <em>Gold or bronze cufflinks over silver. A warm cream or golden ivory shirt over stark white. A warm teal or rust tie for warmth and presence.</em></div>
+  </div>
+</div>
+
+<!-- MAKEUP & HAIR -->
+<div class="section" id="section-makeup">
+  <div class="section-title">Makeup & Hair</div>
+  <div class="section-desc">Your Warm Autumn guide to beauty. Warm, golden, and naturally radiant. Shades listed are longstanding classics worth looking for.</div>
+
+  <div class="guide-note">
+    Product recommendations are included as helpful starting points. Formulas and shade names can change, always do a quick check before purchasing, and trust your eye against your palette above all else.
+  </div>
+
+  <div class="makeup-tip">
+    <strong>Your golden rule:</strong> If it looks cool, icy, or pastel, put it back. Warm Autumn makeup is warm, deep, and intentional. A rich warm garnet or warm garnet lip with minimal eye makeup will always look more "you" than a full cool face. Your depth and warmth do the work, let your colours support that.
+  </div>
+
+  <div class="makeup-section-title">Lips</div>
+  <div class="makeup-intro">Your most powerful beauty tool. Warm terracottas, brick reds, vivid corals and golden nudes are your naturals. They mirror your colouring and look effortless rather than "done."</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Terracotta & Warm Coral — your everyday lip</div>
+    <div class="makeup-chips">
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#C85A38"></div>MAC Velvet Teddy</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#9C4A2F"></div>NARS Heat Wave</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#A85030"></div>RMS Lip2Cheek Beloved</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#B07030"></div>Ere Perez Wheat Lip Crayon</div>
+    </div>
+    <div class="makeup-card-text">Look for shades described as <strong>warm terracotta, warm coral, golden nude, or brick</strong>. Avoid anything cool, pink-based, fuchsia, or blue-red. <em>Tip: a warm terracotta sheered out is one of the most naturally flattering everyday looks for this placement across all skin tones.</em></div>
+  </div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Warm Orange & Cinnamon — vivid and lively</div>
+    <div class="makeup-chips">
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#C04A1A"></div>NARS Dragon Girl</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#A84A30"></div>MAC Chili</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#9A4028"></div>ILIA Balmy Tint Getaway</div>
+    </div>
+    <div class="makeup-card-text">Look for <strong>warm orange-red, cinnamon, or vivid warm coral</strong> shades. These are distinctly Warm Autumn and look spectacular rather than overdone. <em>Avoid anything muted, greyed out, or cool-leaning.</em></div>
+  </div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Warm Burgundy & Garnet — evening depth</div>
+    <div class="makeup-chips">
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#7A2010"></div>MAC Antique Velvet</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#8A2818"></div>NARS Carthage</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#7A3A28"></div>RMS Lip2Cheek Demure</div>
+    </div>
+    <div class="makeup-card-text">Warm burgundies and garnets are your evening options. Look for <strong>warm burgundy, warm garnet, or deep warm red-brown</strong>. Avoid cool plums with blue undertones. Your evening lip should still feel warm and golden, just deeper.</div>
+  </div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Your everyday nude — warm and golden, not cool</div>
+    <div class="makeup-card-text">Your version of a no-makeup lip is a <strong>warm nude, golden nude, or sheer warm peach</strong>. Look for shades described as warm, golden, or peachy-nude. <em>Tip: a warm nude lip liner worn alone gives a natural, polished finish that works beautifully for this placement across all skin tones.</em></div>
+  </div>
+
+  <div class="makeup-section-title">Blush</div>
+  <div class="makeup-intro">Your blush should add a warm, naturally glowing flush. Warm peaches, terracottas, and golden corals are your most flattering directions. A warm bronzer used lightly on the cheeks is a natural go-to for Warm Autumn and works beautifully across all skin tones.</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Go-to blush shades</div>
+    <div class="makeup-chips">
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#C04A1A"></div>NARS Taj Mahal</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#9E3B2F"></div>RMS Beauty Spell</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#9A3A20"></div>ILIA Multi-Stick Cosmic</div>
+      <div class="makeup-chip"><div class="makeup-chip-dot" style="background:#A0522D"></div>Ere Perez Carrot Colour Pot</div>
+    </div>
+    <div class="makeup-card-text">Look for blush described as <strong>warm, peachy, terracotta, golden coral, or warm bronze</strong>. Avoid cool pink, lavender-rose, or anything that reads pink or cool on the skin. <em>Tip: a warm bronzer used lightly as blush is one of the most universally flattering options for Warm Autumn.</em></div>
+  </div>
+
+  <div class="makeup-section-title">Foundation & Tinted Moisturiser</div>
+  <div class="makeup-intro">Your most important foundation consideration: <strong>warm or golden undertone</strong>. Warm and golden-based foundations work best. Pink-based or cool foundations will look ashy and fight your warm colouring.</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">What to look for</div>
+    <div class="makeup-card-text">Ask for <strong>warm or golden undertone</strong> in your shade. Avoid shades described as pink, cool, or neutral-cool. Warm Autumn spans a range of skin tones, so your shade depth will vary, but the undertone quality stays the same. <em>Tip: when testing foundation, a warm match that looks alive and naturally golden is right. One that looks ashy, grey, or pink-toned is too cool for you.</em></div>
+  </div>
+
+  <div class="makeup-section-title">Eyes</div>
+  <div class="makeup-intro">Your eyes thrive with warm depth and rich definition. Bronze, copper, warm gold, and forest greens are deeply flattering. The warm brown and golden palette was made for you.</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Eyeshadow — what works</div>
+    <div class="makeup-card-text"><strong>Base shades:</strong> warm ivory, golden beige, light caramel, warm peach. <strong>Depth:</strong> warm brown, golden brown, medium chestnut, warm toffee. <strong>Accents:</strong> bronze, copper, warm gold, golden teal, burnt sienna. Rich metallic and satin finishes look spectacular on Warm Autumn. <em>Avoid: cool grey, silver, icy lavender, stark black, or any cool metallic.</em></div>
+  </div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Eyeliner</div>
+    <div class="makeup-card-text">Warm dark brown or espresso is your most flattering liner. If you want more drama, try <strong>dark chestnut, deep chocolate, or deep forest green</strong>. Avoid cool grey or blue-black liner, which creates a harsh coolness that fights your warm-neutral depth. <em>Tip: a deep warm brown liner with a brick red lip is a quintessential Warm Autumn look.</em></div>
+  </div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Mascara</div>
+    <div class="makeup-card-text"><strong>Warm brown or dark espresso mascara</strong> is your most flattering choice. dark chestnut works beautifully too. Pure cool black can work but may feel stark, if you use it, pair with softer warm eye makeup elsewhere. <em>Try: any brown-black shade for a rich, natural finish that enhances rather than harshens.</em></div>
+  </div>
+
+  <div class="makeup-section-title">Brows & Beard</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Brow guidance</div>
+    <div class="makeup-card-text">Match your brow product to <strong>your natural hair colour, or go one shade warmer and slightly deeper</strong>. A warm dark brown or dark chestnut brow product works beautifully. Avoid anything with ash, cool, or grey undertones. <em>Tip: ask for "warm brown" or "dark warm brown" when shopping brow pencils or powders.</em></div>
+  </div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Beard & grooming colour</div>
+    <div class="makeup-card-text">Facial hair looks excellent in this season, the natural depth and warmth of Warm Autumn colouring suits well-kept facial hair beautifully. If you colour your beard or brows, look for deep warm brown, espresso, or dark chestnut shades. Avoid anything with ash, cool, or blue-black tones. <em>Tip: keep lines clean and intentional, Warm Autumn suits structured grooming that feels deliberate.</em></div>
+  </div>
+
+  <div class="makeup-section-title">Hair Colour</div>
+  <div class="makeup-intro">Your most beautiful hair colour is often the one you were born with. Warm Autumn's natural colouring tends toward warm, golden, medium-toned hair, and that is exactly what flatters you most.</div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Your best hair colours</div>
+    <div class="makeup-card-text"><strong>Deep and warm:</strong> deep brown, espresso, dark chestnut, and auburn-brown are all stunning. These shades echo your natural depth and colouring. <em>Avoid: ashy tones, platinum or icy highlights, cool black, or anything that introduces coolness or lightness to your hair, these work against your natural richness.</em></div>
+  </div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">Highlights & colour techniques</div>
+    <div class="makeup-card-text">If you highlight, choose deep warm caramel, auburn, or copper tones only. Keep them subtle and close in depth to your base, Warm Autumn does not suit high-contrast highlighting. <em>Avoid: cool ash highlights, platinum balayage, or any technique that introduces icy or light tones. Depth and warmth are your strengths.</em></div>
+  </div>
+  <div class="makeup-card">
+    <div class="makeup-card-label">What to ask your colourist</div>
+    <div class="makeup-card-text">Ask for <strong>"warm toned," "no ash," and "deep"</strong> for your shade. Show your colourist your palette, having your actual colour reference makes the conversation much easier. <em>Tip: when in doubt, go deeper and warmer rather than lighter or cooler.</em></div>
+  </div>
+
+  <div class="makeup-tip" style="margin-top:24px;">
+    <strong>Shopping tip:</strong> When you find a product you love but are not sure if it works, try asking an AI assistant: <em>"Is [Brand Name] [Product Name] in [Shade Name] warm or cool toned? Is it suitable for Warm Autumn?"</em> Then do a visual check by comparing the product swatch against your palette. Trust your eye.
+    <br><br>
+    <strong>Screen tip:</strong> For the most accurate colour reference when using this guide, turn off your blue light filter and set your screen brightness to around 80 percent or higher. On iPhone this is called <strong>Night Shift</strong> (Settings &gt; Display &amp; Brightness). On Samsung it is <strong>Eye Comfort Shield</strong> (Settings &gt; Display).
+  </div>
+</div>
+
+<div class="glow-footer">
+  <div class="glow-circle">
+    <img src="logo.png" alt="Glow Colour Analysis">
+  </div>
+  <div class="glow-logo-text">Warm Autumn Colour Palette · Glow Colour Analysis</div>
+  <div class="glow-copyright">
+    © 2025 Glow Colour Analysis · Alyssa Mestrovic<br>
+    This palette guide is the original work of Glow Colour Analysis and is protected by copyright. It is intended for personal use by the individual client only — please don't share, reproduce, or redistribute without written permission.
+  </div>
+</div>
+
+<script>
+const neutrals = [
+  { name:"Warm Tan",            hex:"#C4A882", when:"Your lightest warm neutral, trousers, casual jackets, a grounded base without going too deep", pair:"Golden amber, warm ivory, brick red" },
+  { name:"Golden Beige",        hex:"#D4AA70", when:"Warm and light, a golden beige that lifts your deeper tones beautifully", pair:"Warm brown, camel, brick red" },
+  { name:"Camel",               hex:"#C8A055", when:"A true camel, your most iconic neutral and one of the most naturally flattering base colours for this placement", pair:"Brick red, forest green, warm brown" },
+  { name:"Cognac",              hex:"#B07030", when:"A warm cognac tone, golden and rich, your most expressive warm neutral", pair:"Camel, golden amber, warm ivory" },
+  { name:"Toffee",              hex:"#A0683A", when:"Rich warm toffee, a mid-tone that works as a casual jacket or trouser", pair:"Camel, golden amber, warm cream" },
+  { name:"Golden Brown",        hex:"#9A6B30", when:"A warm golden-brown that bridges your light and medium tones beautifully", pair:"Warm ivory, camel, brick red" },
+  { name:"Medium Warm Brown",   hex:"#9A6A50", when:"Your core warm brown, suits, jackets, trousers, the colour that anchors your wardrobe", pair:"Camel, golden amber, warm ivory" },
+  { name:"Rich Warm Brown",     hex:"#8A5038", when:"A richer, deeper warm brown with real presence, your most versatile mid-dark neutral", pair:"Camel, golden amber, warm ivory" },
+  { name:"Warm Brown",          hex:"#7A4A28", when:"A reliable warm brown that works as a base for almost any combination", pair:"Camel, golden amber, warm ivory" },
+  { name:"Chestnut",            hex:"#8B4513", when:"Rich and warm, a chestnut that suits professional and casual occasions equally", pair:"Camel, golden amber, warm cream" },
+  { name:"Warm Mahogany",       hex:"#7A3A28", when:"A warm mahogany that has real depth without going too dark for this placement", pair:"Camel, golden amber, warm ivory" },
+];
+const blenders = [
+  { name:"Warm Ivory",          hex:"#F5E6C8", when:"Your lightest tone, a warm ivory that glows without going stark or cool", pair:"Camel, golden amber, warm brown" },
+  { name:"Golden Cream",        hex:"#F0D8A0", when:"Warm and luminous, a golden cream that pairs beautifully with everything in your palette", pair:"Warm brown, chestnut, camel" },
+  { name:"Warm Cream",          hex:"#EDD898", when:"A rich warm cream with golden warmth, your most versatile light blender", pair:"Warm brown, medium warm brown, forest green" },
+  { name:"Golden Peach",        hex:"#F0B870", when:"A golden-peach with warmth underneath, lighter and more vibrant than apricot", pair:"Warm brown, chestnut, camel" },
+  { name:"Warm Apricot",        hex:"#E8A870", when:"Warm and inviting, a soft apricot that works as a casual layering piece", pair:"Warm brown, chestnut, forest green" },
+  { name:"Warm Coral Pink",     hex:"#E8A090", when:"A warm coral-pink sitting between peach and pink, lively and naturally flattering", pair:"Warm brown, camel, golden amber" },
+  { name:"Warm Buff",           hex:"#D4B888", when:"A soft warm buff that sits quietly and works with almost everything in your palette", pair:"Warm brown, camel, golden amber" },
+  { name:"Warm Sand",           hex:"#C8A870", when:"Golden sand, a light neutral that works as a casual top or layering piece", pair:"Warm brown, dark chestnut, warm mahogany" },
+  { name:"Golden Sand",         hex:"#D4A858", when:"A golden sand tone that adds warmth and light to your deeper combinations", pair:"Warm brown, dark chestnut, dark chestnut" },
+  { name:"Light Caramel",       hex:"#D4A070", when:"A light caramel that works as your softest mid-tone blender", pair:"Warm brown, dark chestnut, chestnut" },
+  { name:"Golden Amber",        hex:"#C88C3A", when:"Rich golden amber, your most versatile warm accent blender", pair:"Warm brown, dark chestnut, dark chestnut" },
+  { name:"Honey Gold",          hex:"#D4943A", when:"Warm honey gold, a beautiful blender that bridges your light and rich tones", pair:"Warm brown, chestnut, dark chestnut" },
+];
+const basics = [
+  { name:"Warm Lime",           hex:"#8AAA3A", when:"A warm yellow-green that carries the brightness of this placement beautifully", pair:"Camel, golden amber, warm brown" },
+  { name:"Pea Green",           hex:"#7A9A3A", when:"A lively warm pea green with yellow in its undertone, fresh and naturally flattering", pair:"Camel, warm ivory, golden amber" },
+  { name:"Apple Green",         hex:"#6A9A3A", when:"A warm apple green with yellow warmth, fresh and distinctly Warm Autumn", pair:"Camel, warm ivory, golden amber" },
+  { name:"Golden Olive",        hex:"#8B8B3A", when:"A yellow-based olive that is distinctly warm and flattering, leafy and natural", pair:"Camel, warm brown, golden amber" },
+  { name:"Golden Green",        hex:"#7A8A3A", when:"A golden green that radiates warmth and is beautifully flattering in any light", pair:"Camel, warm brown, golden amber" },
+  { name:"Warm Olive",          hex:"#9A9A4A", when:"A brighter warm olive with yellow warmth, works beautifully as a top or casual piece", pair:"Camel, warm brown, chestnut" },
+  { name:"Moss Green",          hex:"#6A7A3A", when:"A warm mossy green with yellow base, grounded and naturally harmonious", pair:"Camel, warm brown, golden amber" },
+  { name:"Leafy Green",         hex:"#4A9060", when:"A warm leafy green, your most versatile everyday green that works for any occasion", pair:"Camel, golden amber, warm brown" },
+  { name:"Kelly Green",         hex:"#2A8A3A", when:"A warm Kelly green with yellow in the undertone, vivid and naturally flattering, that signature warm green", pair:"Camel, golden amber, warm ivory" },
+  { name:"Warm Forest",         hex:"#3A6A3A", when:"A warm forest green, grounded and naturally authoritative without going too dark", pair:"Camel, golden amber, warm ivory" },
+  { name:"Golden Fern",        hex:"#5A7A3A", when:"A warm medium green with yellow in the undertone, fresh and naturally flattering", pair:"Camel, golden amber, warm brown" },
+  { name:"Forest Green",        hex:"#336033", when:"A deeper warm forest green for when you want grounded authority and natural presence", pair:"Camel, golden amber, warm ivory" },
+  { name:"Bright Warm Teal",     hex:"#2A8AAA", when:"A vivid warm teal-blue, bright and naturally flattering, one of the most lively blues in your palette", pair:"Camel, golden amber, warm ivory" },
+  { name:"Warm Aqua",           hex:"#4A9A8A", when:"A warm aqua that leans toward teal rather than blue, vibrant and naturally flattering", pair:"Camel, warm ivory, golden amber" },
+  { name:"Warm Teal",           hex:"#3A8A7A", when:"A warm teal with golden undertone, balanced and beautifully flattering", pair:"Camel, golden amber, warm ivory" },
+  { name:"Warm Turquoise",      hex:"#3A8A8A", when:"A warm turquoise with golden quality, works beautifully for casual and professional occasions", pair:"Camel, golden amber, warm cream" },
+  { name:"Teal Depths",    hex:"#1F6858", when:"A deeper warm teal with golden warmth underneath, sophisticated and naturally striking", pair:"Camel, golden amber, warm cream" },
+  { name:"Golden Teal",         hex:"#2A7A6A", when:"A rich warm teal, one of your most flattering and versatile blues", pair:"Camel, golden amber, warm cream" },
+  { name:"Golden Royal",         hex:"#3458A8", when:"A vivid warm royal blue with golden undertone, lively and distinctly Warm Autumn", pair:"Camel, golden amber, warm ivory" },
+  { name:"Warm Blue",           hex:"#3A6A9A", when:"A warm blue with yellow in its undertone, your most flattering blue option", pair:"Camel, warm ivory, golden amber" },
+  { name:"Vivid Warm Navy",      hex:"#2A3F8A", when:"A brighter deeper warm navy, vivid and rich with just enough golden warmth in the undertone", pair:"Camel, golden amber, warm ivory" },
+  { name:"Golden Purple",       hex:"#7A5A8A", when:"A warm purple with golden quality, works beautifully for special occasions", pair:"Camel, golden amber, warm cream" },
+  { name:"Warm Violet",         hex:"#6A4A7A", when:"A warm violet that leans toward red-purple rather than blue-purple, naturally flattering", pair:"Camel, warm ivory, golden amber" },
+  { name:"Warm Rose Brown",    hex:"#9A5A4A", when:"A warm dusty rose-brown sitting between copper and terracotta, soft and naturally flattering", pair:"Camel, golden amber, warm ivory" },
+  { name:"Aubergine",            hex:"#3E1E3A", when:"A true mid-depth aubergine, warmer and less deep than autumn aubergine but unmistakably in that rich purple-red territory", pair:"Camel, golden amber, warm ivory" },
+  { name:"Warm Purple",        hex:"#7A4870", when:"A warm muted purple with red warmth underneath, softer and lighter than aubergine", pair:"Camel, golden amber, warm ivory" },
+  { name:"Spiced Plum",         hex:"#6A3A5A", when:"A warm spiced plum, rich and inviting for evenings and special occasions", pair:"Camel, golden amber, warm ivory" },
+];
+const accents = [
+  { name:"Golden Yellow",       hex:"#E8C83A", when:"Warm and radiant, golden yellow is one of your most vibrant and naturally flattering accents", pair:"Warm brown, dark chestnut, dark chestnut" },
+  { name:"Warm Yellow",         hex:"#E0B83A", when:"A slightly deeper warm yellow, wear this when you want warmth and visibility", pair:"Warm brown, chestnut, dark chestnut" },
+  { name:"Golden Mustard",      hex:"#C8A030", when:"Rich golden mustard, warm visibility for photos, content creation and brand presence", pair:"Warm brown, dark chestnut, dark chestnut" },
+  { name:"Warm Coral",          hex:"#E87848", when:"Vivid and warm, a coral that is completely at home in this golden warm palette", pair:"Warm brown, dark chestnut, golden amber" },
+  { name:"Warm Orange",         hex:"#E06830", when:"A vivid orange, lively and naturally flattering for this placement", pair:"Warm brown, dark chestnut, dark chestnut" },
+  { name:"Terracotta Pink",     hex:"#D87868", when:"That terracotta-pink that is so distinctly warm autumn, warm and approachable", pair:"Warm brown, camel, golden amber" },
+  { name:"Terracotta",          hex:"#B86860", when:"A warm terracotta sitting between orange and red, your signature accent", pair:"Warm brown, dark chestnut, camel" },
+  { name:"Warm Terracotta",     hex:"#C45535", when:"A brighter terracotta with vivid warmth, expressive and distinctly yours", pair:"Warm brown, dark chestnut, camel" },
+  { name:"Cinnamon",            hex:"#A85030", when:"Spiced and warm, a cinnamon that feels completely natural on this placement", pair:"Warm brown, camel, golden amber" },
+  { name:"Burnt Sienna",        hex:"#A84A30", when:"A warm burnt sienna sitting beautifully between rust and terracotta", pair:"Camel, golden amber, warm brown" },
+  { name:"Warm Pink",           hex:"#E89878", when:"A warm peachy-pink that starts from warmth, approachable and naturally flattering", pair:"Warm brown, camel, golden amber" },
+  { name:"Copper",              hex:"#C07030", when:"Warm copper, a metallic-quality colour that works as clothing or accessories", pair:"Warm brown, dark chestnut, dark chestnut" },
+  { name:"Auburn",              hex:"#9A4028", when:"A warm auburn red-brown, natural and richly grounded confidence", pair:"Warm brown, camel, golden amber" },
+  { name:"Rust",                hex:"#B84030", when:"A warm rust, your most earthy red and one of the most naturally flattering colours", pair:"Warm brown, dark chestnut, camel" },
+  { name:"Brick Red",           hex:"#8A3020", when:"A warm brick red, one of your most flattering and naturally confident accent colours", pair:"Warm brown, dark chestnut, camel" },
+  { name:"Chili Red",           hex:"#C03000", when:"A vivid warm chili red starting from pure red-orange warmth, lively and spectacular", pair:"Camel, golden amber, warm ivory" },
+  { name:"Warm Red",            hex:"#C83A28", when:"A vivid warm red that starts from orange-warmth, lively and spectacular", pair:"Warm brown, dark chestnut, camel" },
+  { name:"Warm Tomato",         hex:"#C84030", when:"A warm vivid red leaning toward tomato, lively and spectacular for this placement", pair:"Camel, golden amber, warm brown" },
+  { name:"Warm Burgundy",       hex:"#7A2010", when:"A warm burgundy that starts from red with autumn depth, for evenings and special occasions", pair:"Camel, golden amber, warm cream" },
+];
+const power = [
+  { name:"Vivid Orange",        hex:"#D76028", when:"Vivid and spectacular, wear this when you want your energy to fill the room", pair:"Warm brown, dark chestnut, dark chestnut" },
+  { name:"Burnished Copper",    hex:"#B86828", when:"Golden and warm, copper is one of your most distinctive and powerful colour choices", pair:"Warm brown, dark chestnut, dark chestnut" },
+  { name:"Vivid Terracotta",    hex:"#C05030", when:"Warm, lively, and completely you. The colour that announces this is your season", pair:"Warm brown, dark chestnut, camel" },
+  { name:"Deep Rust",           hex:"#AF3828", when:"Earthy and commanding, rust is the colour of natural confidence and warm authority", pair:"Warm brown, dark chestnut, camel" },
+  { name:"Deep Teal",         hex:"#287568", when:"Sophisticated and quietly powerful, golden teal commands presence without effort", pair:"Camel, golden amber, warm cream" },
+  { name:"Deep Burgundy",       hex:"#6A1C0C", when:"Warm authority for evenings and formal occasions, rich and naturally commanding", pair:"Camel, golden amber, warm cream" },
+  { name:"Deep Garnet",         hex:"#8A2818", when:"Deep warm red authority, your most commanding formal colour for evenings", pair:"Camel, golden amber, warm ivory" },
+  { name:"Dark Chestnut",       hex:"#7A3D0E", when:"Rich and naturally powerful, chestnut grounds any outfit with warm confidence", pair:"Camel, golden amber, warm cream" },
+];
+
+function getLightness(hex) {
+  const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+  return (r*299 + g*587 + b*114) / 1000;
+}
+function getHue(hex) {
+  const r=parseInt(hex.slice(1,3),16)/255, g=parseInt(hex.slice(3,5),16)/255, b=parseInt(hex.slice(5,7),16)/255;
+  const max=Math.max(r,g,b), min=Math.min(r,g,b), d=max-min;
+  if(d===0) return 0;
+  let h;
+  if(max===r) h=((g-b)/d)%6;
+  else if(max===g) h=(b-r)/d+2;
+  else h=(r-g)/d+4;
+  return ((h*60)+360)%360;
+}
+
+const seen = new Set();
+const allRaw = [...neutrals,...blenders,...basics,...accents,...power].filter(c => {
+  if(seen.has(c.hex)) return false;
+  seen.add(c.hex); return true;
+});
+
+const customOrder = ['#F5E6C8','#F0D8A0','#EDD898','#D4B888','#F0B870','#E8A870','#E8A090','#E89878','#E8C83A','#E0B83A','#C8A030','#D4A858','#C88C3A','#D4943A','#C8A870','#C4A882','#D4AA70','#C8A055','#D4A070','#9A5A4A','#E87848','#E06830','#D76028','#D87868','#C07030','#B86828','#B07030','#B86860','#C45535','#C05030','#C84030','#C83A28','#B84030','#AF3828','#8A3020','#A84A30','#A85030','#C03000','#9A4028','#7A2010','#6A1C0C','#8A2818','#A0683A','#9A6B30','#9A6A50','#8A5038','#7A4A28','#8B4513','#7A3A28','#7A3D0E','#8AAA3A','#9A9A4A','#8B8B3A','#7A9A3A','#6A9A3A','#7A8A3A','#6A7A3A','#2A8A3A','#5A7A3A','#4A9060','#3A6A3A','#336033','#4A9A8A','#3A8A7A','#3A8A8A','#287568','#2A7A6A','#1F6858','#2A8AAA','#3A6A9A','#3458A8','#2A3F8A','#7A5A8A','#6A4A7A','#7A4870','#6A3A5A','#3E1E3A'];
+const pinnedFirst = ['#F5E6C8','#F0D8A0','#EDD898','#D4B888','#F0B870','#E8A870'];
+const pinnedLast  = ['#2A3F8A','#7A5A8A','#6A4A7A','#7A4870','#6A3A5A','#3E1E3A'];
+const middle = allRaw.filter(c => !pinnedFirst.includes(c.hex) && !pinnedLast.includes(c.hex))
+  .sort((a,b) => {
+    const ai = customOrder.indexOf(a.hex);
+    const bi = customOrder.indexOf(b.hex);
+    if(ai === -1 && bi === -1) return getLightness(b.hex) - getLightness(a.hex);
+    if(ai === -1) return 1;
+    if(bi === -1) return -1;
+    return ai - bi;
+  });
+const allColours = [
+  ...pinnedFirst.map(h=>allRaw.find(c=>c.hex===h)).filter(Boolean),
+  ...middle,
+  ...pinnedLast.map(h=>allRaw.find(c=>c.hex===h)).filter(Boolean),
+];
+
+function buildFsGrid(id, colours) {
+  const grid = document.getElementById(id);
+  if (!grid) return;
+  grid.innerHTML = colours.map(c => `
+    <div class="swatch-card" onclick="fsOpen('${c.hex}','${c.name.replace(/'/g,"\\'")}','${c.when.replace(/'/g,"\\'")}','${c.pair.replace(/'/g,"\\'")}')">
+      <div class="swatch-colour" style="background:${c.hex}"></div>
+      <div class="swatch-base">
+        <div class="swatch-name">${c.name}</div>
+        <div class="swatch-hex">${c.hex}</div>
+      </div>
+    </div>`).join('');
+}
+
+buildFsGrid('grid-overview', allColours);
+buildFsGrid('grid-neutrals', [...neutrals].sort((a,b)=>getLightness(b.hex)-getLightness(a.hex)));
+buildFsGrid('grid-blenders', [...blenders].sort((a,b)=>getLightness(b.hex)-getLightness(a.hex)));
+buildFsGrid('grid-basics',   [...basics].sort((a,b)=>getLightness(b.hex)-getLightness(a.hex)));
+buildFsGrid('grid-accents',  [...accents].sort((a,b)=>getLightness(b.hex)-getLightness(a.hex)));
+buildFsGrid('grid-power',    [...power].sort((a,b)=>getLightness(b.hex)-getLightness(a.hex)));
+
+let _fsHex = '';
+
+function fsOpen(hex, name, when, pair) {
+  _fsHex = hex;
+  const isDark = getLightness(hex) < 140;
+  document.getElementById('fs-colour-block').style.background = hex;
+  document.getElementById('fs-name').textContent = name;
+  document.getElementById('fs-hex').textContent = hex;
+  document.getElementById('fs-when').textContent = when;
+  document.getElementById('fs-pair').textContent = pair;
+  document.getElementById('fs-drawer-name').textContent = name;
+  document.getElementById('fs-drawer-hex').textContent = hex;
+  document.getElementById('fs-copy-btn').textContent = 'Copy';
+  document.getElementById('fs-copy-btn2').textContent = 'Copy ' + hex;
+
+  const pill     = document.getElementById('fs-peek-pill');
+  const peekName = document.getElementById('fs-name');
+  const peekHex  = document.getElementById('fs-hex');
+  const copyBtn  = document.getElementById('fs-copy-btn');
+  const closeBtn = document.getElementById('fs-close-btn');
+
+  if (isDark) {
+    peekName.className = 'fs-peek-name';
+    peekHex.className  = 'fs-peek-hex';
+    copyBtn.className  = 'fs-copy-btn';
+    closeBtn.className = 'fs-close-btn';
+    pill.className     = 'fs-peek-pill';
+  } else {
+    peekName.className = 'fs-peek-name dark';
+    peekHex.className  = 'fs-peek-hex dark';
+    copyBtn.className  = 'fs-copy-btn dark';
+    closeBtn.className = 'fs-close-btn dark';
+    pill.className     = 'fs-peek-pill dark';
+  }
+
+  document.getElementById('fs-drawer').classList.remove('open');
+  document.getElementById('fs-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function fsToggleDrawer() {
+  document.getElementById('fs-drawer').classList.toggle('open');
+}
+
+function fsClose() {
+  document.getElementById('fs-overlay').classList.remove('active');
+  document.getElementById('fs-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function fsCopy() {
+  navigator.clipboard.writeText(_fsHex).then(() => {
+    const btn = document.getElementById('fs-copy-btn');
+    btn.textContent = '✓';
+    setTimeout(() => { btn.textContent = 'Copy'; }, 1600);
+  });
+}
+
+function fsCopy2() {
+  navigator.clipboard.writeText(_fsHex).then(() => {
+    const btn = document.getElementById('fs-copy-btn2');
+    btn.textContent = 'Copied!';
+    btn.style.background = '#4B2E1E';
+    setTimeout(() => {
+      btn.textContent = 'Copy ' + _fsHex;
+      btn.style.background = '';
+    }, 1800);
+  });
+}
+
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('section-'+id).classList.add('visible');
+  el.classList.add('active');
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
